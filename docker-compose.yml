@@ -1,0 +1,23 @@
+version: '3.2'
+service:
+    traefik:
+        image: traefik
+        command: --web --docker --docker.watch --docker.domain=l.h4y.cz --logLevel=DEBUG  --entryPoints="Name:https Address::443 TLS:/certs/cert.pem,/cert/key.pem" --entryPoints="Name:http Address::80 Redirect.EntryPoint:https"
+        ports:
+            - "80:80"
+            - "443:443"
+            - "8080:8080"
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - /dev/null:/traefik.toml
+            - ./certs:/certs
+#
+# Example service:
+#     example:
+#         image: nginx
+#         labels:
+#             - "traefik.frontend.rule=Host:a.l.h4y.cz"
+#             - "traefik.port=80"
+#             - "traefix.port=443"
+#             - "traefik.frontend.entryPoints=http,https"
+
