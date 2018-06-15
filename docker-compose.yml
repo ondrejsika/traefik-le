@@ -1,8 +1,8 @@
 version: '3.2'
-service:
+services:
     traefik:
         image: traefik
-        command: --web --docker --docker.watch --docker.domain=l.h4y.cz --logLevel=DEBUG  --entryPoints="Name:https Address::443 TLS:/certs/cert.pem,/cert/key.pem" --entryPoints="Name:http Address::80 Redirect.EntryPoint:https"
+        command: --web --docker --docker.watch --docker.domain=l.h4y.cz --logLevel=DEBUG  --entryPoints="Name:https Address::443 TLS:/certs/cert.pem,/certs/key.pem" --entryPoints="Name:http Address::80 Redirect.EntryPoint:https"
         ports:
             - "80:80"
             - "443:443"
