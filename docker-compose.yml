@@ -11,15 +11,20 @@ services:
             - /var/run/docker.sock:/var/run/docker.sock
             - /dev/null:/traefik.toml
             - ./certs:/certs
-        network_mode: bridge
-#
+        networks:
+            - traefik
+
 # Example service:
 #     example:
 #         image: nginx
-#         network_mode: bridge
+#         networks:
+#              - traefik
 #         labels:
-#             - "traefik.frontend.rule=Host:nginx.traefik.xsika.cz"
-#             - "traefik.port=80"
-#             - "traefix.port=443"
-#             - "traefik.frontend.entryPoints=http,https"
+#             - traefik.frontend.rule=Host:nginx.127.0.0.1.xip.io
+#             - traefik.port=80
+#             - traefik.frontend.entryPoints=http,https
+#             - traefik.docker.network=traefik
 
+networks:
+    traefik:
+        name: traefik
