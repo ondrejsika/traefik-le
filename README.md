@@ -1,16 +1,15 @@
-# Traefik SSL Proxy
+# Traefik Proxy with Let's Encrypt
 
     Ondrej Sika <ondrej@ondrejsika.com>
-    https://github.com/ondrejsika/traefik-ssl
+    https://github.com/ondrejsika/traefik-le
 
-Configuration for Traefik as proxy with SSL.
+Configuration for Traefik as proxy with SSL using Let's Encrypt.
 
 
 ## Install & Run
 
 ```
-git clone git@github.com:ondrejsika/traefik-ssl.git
-cd traefik-ssl
-openssl req -newkey rsa:2048 -nodes -keyout certs/key.pem -x509 -days 365 -out certs/cert.pem
+git clone git@github.com:ondrejsika/traefik-le.git
+cd traefik-le
 docker-compose up -d
 ```

@@ -1,0 +1,14 @@
+version: '3.6'
+services:
+    example:
+        image: nginx
+        networks:
+             - traefik
+        labels:
+            - traefik.frontend.rule=Host:nginx-${HOST:-127-0-0-1}.nip.io
+            - traefik.enable=true
+
+networks:
+    traefik:
+        external:
+            name: traefik
