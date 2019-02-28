@@ -1,7 +1,22 @@
 version: '3.6'
 services:
     traefik:
-        build: .
+        image: traefik
+        command: |
+            --web \
+            --docker \
+            --docker.watch \
+            --docker.network=traefik \
+            --docker.exposedbydefault=false \
+            --entryPoints="Name:https Address::443 TLS" \
+            --entryPoints="Name:http Address::80 Redirect.EntryPoint:https" \
+            --defaultentrypoints="http,https"
+            --acme \
+            --acme.email="le@demo.h4y.cz" \
+            --acme.storage="/acme-data/acme.json" \
+            --acme.entryPoint="https" \
+            --acme.onHostRule=true \
+            --acme.httpChallenge.entryPoint="http"
         ports:
             - "80:80"
             - "443:443"
