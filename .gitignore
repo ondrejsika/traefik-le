@@ -1,2 +1,2 @@
-certs/*
 !.keep
+acme-data/**
