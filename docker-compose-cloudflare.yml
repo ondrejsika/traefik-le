@@ -1,0 +1,38 @@
+version: '3.6'
+services:
+    traefik:
+        image: traefik
+        command: |
+            --web \
+            --docker \
+            --docker.watch \
+            --docker.network=traefik \
+            --docker.exposedbydefault=false \
+            --entryPoints="Name:https Address::443 TLS" \
+            --entryPoints="Name:http Address::80 Redirect.EntryPoint:https" \
+            --defaultentrypoints="http,https"
+            --acme \
+            --acme.email="le@demo.h4y.cz" \
+            --acme.storage="/acme-data/acme.json" \
+            --acme.entryPoint="https" \
+            --acme.onHostRule=true \
+            --acme.httpChallenge.entryPoint="http"
+        environment:
+            CF_API_EMAIL:
+            CF_API_KEY:
+        ports:
+            - "80:80"
+            - "443:443"
+            - "8080:8080"
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - ./acme-data:/acme-data
+        networks:
+            - traefik
+        labels:
+            - traefik.frontend.rule=Host:traefik.l.h4y.cz
+            - traefik.enable=true
+            - traefik.port=8080
+networks:
+    traefik:
+        name: traefik
