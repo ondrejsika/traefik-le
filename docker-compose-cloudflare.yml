@@ -16,7 +16,7 @@ services:
             --acme.storage="/acme-data/acme.json" \
             --acme.entryPoint="https" \
             --acme.onHostRule=true \
-            --acme.httpChallenge.entryPoint="http"
+            --acme.dnsChallenge.provider="cloudflare"
         environment:
             CF_API_EMAIL:
             CF_API_KEY:
@@ -30,7 +30,7 @@ services:
         networks:
             - traefik
         labels:
-            - traefik.frontend.rule=Host:traefik.l.h4y.cz
+            - traefik.frontend.rule=Host:traefik.local.xsika.cz
             - traefik.enable=true
             - traefik.port=8080
 networks:
