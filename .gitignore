@@ -1,2 +1,3 @@
 !.keep
 acme-data/**
+.env
