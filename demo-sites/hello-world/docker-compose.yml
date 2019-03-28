@@ -5,7 +5,7 @@ services:
         networks:
              - traefik
         labels:
-            - traefik.frontend.rule=Host:hello-${HOST:-127-0-0-1}.nip.io
+            - traefik.frontend.rule=Host:${HOST:-hello-127-0-0-1.nip.io}
             - traefik.enable=true
 
 networks:
