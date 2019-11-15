@@ -1,0 +1,26 @@
+version: '3.6'
+services:
+    traefik:
+        image: traefik:1.7
+        command: |
+            --api \
+            --metrics \
+            --metrics.prometheus \
+            --metrics.prometheus.entryPoint="traefik" \
+            --web \
+            --docker \
+            --docker.watch \
+            --docker.network=traefik \
+            --docker.exposedbydefault=false \
+            --entryPoints="Name:http Address::80" \
+            --defaultentrypoints="http"
+        ports:
+            - "80:80"
+            - "8080:8080"
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        networks:
+            - traefik
+networks:
+    traefik:
+        name: traefik
