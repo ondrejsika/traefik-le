@@ -22,6 +22,7 @@ services:
             --acme.onHostRule=true \
             --acme.dnsChallenge.provider="cloudflare"
         userns_mode: host
+        restart: always
         environment:
             CF_API_EMAIL:
             CF_API_KEY:
