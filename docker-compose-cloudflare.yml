@@ -21,6 +21,7 @@ services:
             --acme.entryPoint="https" \
             --acme.onHostRule=true \
             --acme.dnsChallenge.provider="cloudflare"
+        userns_mode: host
         environment:
             CF_API_EMAIL:
             CF_API_KEY:

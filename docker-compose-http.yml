@@ -14,6 +14,7 @@ services:
             --docker.exposedbydefault=false \
             --entryPoints="Name:http Address::80" \
             --defaultentrypoints="http"
+        userns_mode: host
         ports:
             - "80:80"
             - "8080:8080"
