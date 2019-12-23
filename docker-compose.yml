@@ -16,7 +16,7 @@ services:
             --entryPoints="Name:http Address::80 Redirect.EntryPoint:https" \
             --defaultentrypoints="http,https"
             --acme \
-            --acme.email="le@demo.h4y.cz" \
+            --acme.email="${LE_EMAIL:-le@sikademo.com}" \
             --acme.storage="/acme-data/acme.json" \
             --acme.entryPoint="https" \
             --acme.onHostRule=true \
