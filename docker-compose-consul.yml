@@ -1,0 +1,51 @@
+version: "3.6"
+services:
+  consul:
+    image: consul:latest
+    networks:
+      - traefik
+    command: agent -server -bootstrap-expect 1 -ui -client 0.0.0.0
+    ports:
+      - "8400:8400"
+      - "8500:8500"
+      - "8600:8600"
+      - "8600:8600/udp"
+    volumes:
+      - consul:/consul/data
+  traefik:
+    image: traefik:1.7
+    command: |
+      --consul.endpoint=consul:8500 \
+      --api \
+      --metrics \
+      --metrics.prometheus \
+      --metrics.prometheus.entryPoint="traefik" \
+      --web \
+      --docker \
+      --docker.watch \
+      --docker.network=traefik \
+      --docker.exposedbydefault=false \
+      --entryPoints="Name:https Address::443 TLS" \
+      --entryPoints="Name:http Address::80 Redirect.EntryPoint:https" \
+      --defaultentrypoints="http,https"
+      --acme \
+      --acme.email="${LE_EMAIL:-le@sikademo.com}" \
+      --acme.storage="traefik/acme/account" \
+      --acme.entryPoint="https" \
+      --acme.onHostRule=true \
+      --acme.httpChallenge.entryPoint="http"
+    userns_mode: host
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - traefik
+networks:
+  traefik:
+    name: traefik
+volumes:
+  consul:
