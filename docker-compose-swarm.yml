@@ -15,6 +15,13 @@ services:
       - "8600:8600/udp"
     volumes:
       - consul:/consul/data
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      restart_policy:
+        condition: on-failure
   traefik:
     image: traefik:1.7
     command: |
@@ -48,6 +55,13 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - traefik
+    deploy:
+      mode: global
+      placement:
+        constraints:
+          - node.role == manager
+      restart_policy:
+        condition: on-failure
 networks:
   traefik:
     name: traefik
