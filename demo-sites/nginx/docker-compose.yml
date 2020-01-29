@@ -5,8 +5,15 @@ services:
         networks:
              - traefik
         labels:
+            # For Docker Compose Traefik Deployment (single node)
             - traefik.frontend.rule=Host:${HOST:-nginx-127-0-0-1.nip.io}
             - traefik.enable=true
+        deploy:
+            labels:
+                # For Docker Swarm Traefik Deployment (cluster)
+                - traefik.frontend.rule=Host:${HOST:-nginx-127-0-0-1.nip.io}
+                - traefik.enable=true
+                - traefik.port=80
 
 networks:
     traefik:
