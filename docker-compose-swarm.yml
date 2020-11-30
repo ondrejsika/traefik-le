@@ -25,6 +25,7 @@ services:
   traefik:
     image: traefik:1.7
     command: |
+      --accesslog \
       --consul.endpoint=consul:8500 \
       --api \
       --metrics \
