@@ -5,7 +5,6 @@
 
 Configuration for Traefik as proxy with SSL using Let's Encrypt.
 
-
 ## Install & Run
 
 ### HTTP challenge
@@ -15,7 +14,6 @@ git clone git@github.com:ondrejsika/traefik-le.git
 cd traefik-le
 docker-compose up -d
 ```
-
 
 ### DNS challenge (cloudflare)
 
