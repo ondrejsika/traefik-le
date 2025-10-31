@@ -1,5 +1,8 @@
 [Ondrej Sika (sika.io)](https://sika.io) | <ondrej@sika.io> | [__Skoleni Docker__](https://ondrej-sika.cz/skoleni/docker/) 🚀💻
 
+> [!CAUTION]
+> This repository is for **Traefik v1** which is **deprecated**! Please use [ondrejsika/ondrejsika-docker-traefik](https://github.com/ondrejsika/ondrejsika-docker-traefik/).
+
 # traefik-le (traefik v1)
 
 Configuration for Traefik as proxy with SSL using Let's Encrypt.
