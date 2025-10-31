@@ -1,7 +1,4 @@
-# ondrejsika-traefik-docker
-
-    Ondrej Sika <ondrej@ondrejsika.com>
-    https://github.com/ondrejsika/ondrejsika-traefik-docker
+# traefik-le (traefik v1)
 
 Configuration for Traefik as proxy with SSL using Let's Encrypt.
 
